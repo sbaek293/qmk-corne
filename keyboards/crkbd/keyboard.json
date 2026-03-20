@@ -40,7 +40,6 @@
                 "matrix_state": true,
                 "modifiers": true,
                 "layer_state": true,
-                "led_state": true,
                 "wpm": true
             }
         },
