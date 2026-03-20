@@ -45,8 +45,7 @@
             }
         },
         "handedness": {
-            "pin": "GP21",
-            "pin_low_is_left": true
+            "pin": "GP21"
         }
     },
     "rgb_matrix": {
