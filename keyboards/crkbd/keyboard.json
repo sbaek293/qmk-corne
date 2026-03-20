@@ -11,14 +11,21 @@
     "processor": "RP2040",
     "bootloader": "rp2040",
     "features": {
+        "audio": false,
+        "auto_shift": true,
+        "backlight": false,
         "bootmagic": true,
+        "combo": true,
         "command": false,
         "console": false,
         "extrakey": true,
+        "key_override": true,
         "mousekey": true,
         "nkro": true,
         "oled": true,
+        "qmk_settings": true,
         "rgb_matrix": true,
+        "rgblight": false,
         "wpm": true
     },
     "build": {

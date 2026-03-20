@@ -5,7 +5,6 @@
 #pragma once
 
 /* Split keyboard settings */
-#define SPLIT_HAND_PIN GP21
 #define SPLIT_HAND_PIN_LOW_IS_LEFT
 
 /* Serial driver */
