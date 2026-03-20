@@ -8,7 +8,6 @@
 #define SPLIT_HAND_PIN_LOW_IS_LEFT
 
 /* Serial driver */
-#define SERIAL_USART_TX_PIN GP1
 #define USB_VBUS_PIN GP19
 
 /* RP2040 bootloader - double-tap reset */
