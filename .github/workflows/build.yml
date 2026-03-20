@@ -1,0 +1,51 @@
+name: Build QMK Firmware
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone Vial-QMK
+        run: |
+          git clone --depth 1 --recurse-submodules --shallow-submodules \
+            https://github.com/vial-kb/vial-qmk.git
+
+      - name: Copy keyboard files into Vial-QMK
+        run: cp -r keyboards/crkbd vial-qmk/keyboards/
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install QMK CLI and dependencies
+        run: |
+          cd vial-qmk
+          pip3 install qmk
+          qmk setup -H $(pwd) -y
+
+      - name: Compile firmware
+        run: |
+          cd vial-qmk
+          qmk compile -kb crkbd -km vial
+
+      - name: Verify UF2 output
+        run: |
+          ls vial-qmk/*.uf2
+          echo "UF2 firmware file(s) ready for upload."
+
+      - name: Upload UF2 firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: crkbd_vial_uf2-${{ github.run_number }}
+          path: vial-qmk/*.uf2
